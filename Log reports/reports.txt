@@ -1,0 +1,47 @@
+==========================================================
+ OPSPULSE INCIDENT TRIAGE REPORT | 20261124_121635
+==========================================================
+Working Directory : /root/opspulse
+Kernel Info       : Linux 6.8.0-147-generic x86_64
+
+--- 1. HOST IDENTITY (hostnamectl) ---
+ Static hostname: ubuntu
+Operating System: Ubuntu 24.04.5 LTS
+          Kernel: Linux 6.8.0-147-generic
+    Architecture: x86-64
+
+--- 2. TOOLCHAIN & PATH VERIFICATION (command -v, which, type) ---
+Tool: jq | command -v: /usr/bin/jq | which: /usr/bin/jq | type: file
+Tool: awk | command -v: /usr/bin/awk | which: /usr/bin/awk | type: file
+Tool: sed | command -v: /usr/bin/sed | which: /usr/bin/sed | type: file
+Tool: grep | command -v: /usr/bin/grep | which: /usr/bin/grep | type: file
+Tool: systemctl | command -v: /usr/bin/systemctl | which: /usr/bin/systemctl | type: file
+
+--- 3. ARTIFACT INTEGRITY & CONFIG BACKUP (cp, file, ls) ---
+/root/opspulse/config/worker.conf:      ASCII text
+/root/opspulse/api/cluster-health.json: JSON text data
+total 8.0K
+-rw-r--r-- 1 root root 146 Nov 24 11:44 worker.conf
+-rw-r--r-- 1 root root 146 Nov 24 12:16 worker.conf.bak
+
+--- 4. SYSTEMD SERVICE & JOURNAL FORENSICS (systemctl, journalctl) ---
+Service Active State : inactive
+Service Failed State : inactive
+Recent Journal Logs  :
+Nov 24 12:12:34 ubuntu systemd[1]: Started opspulse-worker.service - OpsPulse Simulated Payment Worker.
+Nov 24 12:12:34 ubuntu bash[41872]: Starting payment-worker...
+Nov 24 12:12:34 ubuntu bash[41872]: ERROR: Upstream 10.24.18.9 unreachable
+Nov 24 12:12:34 ubuntu systemd[1]: opspulse-worker.service: Main process exited, code=exited, status=1/FAILURE
+Nov 24 12:12:34 ubuntu systemd[1]: opspulse-worker.service: Failed with result 'exit-code'.
+Nov 24 12:12:34 ubuntu systemd[1]: Stopped opspulse-worker.service - OpsPulse Simulated Payment Worker.
+
+--- 5. LOG ERROR ANALYSIS & TOKEN SANITIZATION (grep, cut, tr, sed, awk) ---
+Total HTTP 5xx Errors: 4
+Top Offending Client IPs (cut + awk):
+  10.0.1.89 -> 1 failures
+  10.0.1.22 -> 3 failures
+Sanitized Error Lines (sed masking secrets + tr uppercase severity):
+2026-11-23T14:01:15Z|10.0.1.22|POST /API/V1/PAY|502|3001MS|UPSTREAM_TIMEOUT
+2026-11-23T14:01:19Z|10.0.1.22|POST /API/V1/PAY|502|3004MS|UPSTREAM_TIMEOUT
+2026-11-23T14:01:25Z|10.0.1.89|GET /API/V1/STATUS|500|120MS|DB_CONN_REFUSED
+2026-11-23T14:01:31Z|10.0.1.22|POST /API/V1/PAY|502|3002MS|UPSTREAM_TIMEOUT
