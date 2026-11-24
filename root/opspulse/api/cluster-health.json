@@ -1,0 +1,9 @@
+{
+  "cluster": "prod-blr-01",
+  "timestamp": "2026-11-23T14:02:00Z",
+  "services": [
+    {"name": "auth-api", "status": "healthy", "restarts": 0, "latency_ms": 21},
+    {"name": "payment-worker", "status": "degraded", "restarts": 7, "latency_ms": 2980},
+    {"name": "ledger-sync", "status": "healthy", "restarts": 1, "latency_ms": 45}
+  ]
+}
