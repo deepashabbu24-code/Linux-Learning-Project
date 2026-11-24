@@ -1,0 +1,12 @@
+[Unit]
+Description=OpsPulse Simulated Payment Worker
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'echo "Starting payment-worker..."; echo "ERROR: Upstream 10.24.18.9 unreachable" >&2; exit 1'
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
