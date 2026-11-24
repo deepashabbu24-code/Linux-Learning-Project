@@ -1,0 +1,6 @@
+2026-11-23T14:01:10Z|10.0.1.14|POST /api/v1/pay|200|42ms|token=sk_live_98234aBcDeF7712
+2026-11-23T14:01:15Z|10.0.1.22|POST /api/v1/pay|502|3001ms|upstream_timeout
+2026-11-23T14:01:19Z|10.0.1.22|POST /api/v1/pay|502|3004ms|upstream_timeout
+2026-11-23T14:01:25Z|10.0.1.89|GET /api/v1/status|500|120ms|db_conn_refused
+2026-11-23T14:01:31Z|10.0.1.22|POST /api/v1/pay|502|3002ms|upstream_timeout
+2026-11-23T14:01:40Z|10.0.1.14|GET /api/v1/orders|200|18ms|ok
